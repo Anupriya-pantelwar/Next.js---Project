@@ -1,14 +1,12 @@
-"use client";
-
+import Image from "next/image";
+import styles from "./page.module.css";
 import Link from "next/link";
 
 export default function Home() {
   return (
     <main>
-      <h1>Fetch data with API IN CLIENT COMPONENT</h1>
-      <br />
-      <br />
-      <Link href="/productlist">Go to product List</Link>
+      <h1>Fetch Data with API in Server Component</h1>
+      <Link href="/productlist">Go to Product Page</Link>
     </main>
   );
 }

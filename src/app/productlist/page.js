@@ -1,41 +1,21 @@
-"use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-const Page = () => {
-  const [product, setProduct] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        let response = await fetch("https://dummyjson.com/products");
-        let data = await response.json();
-        setProduct(data.products);
-      } catch (error) {
-        console.log("Failed to fetch data:", error);
-      }
-    };
-    fetchData();
-  }, []);
-
+async function productList() {
+  let data = await fetch("https://dummyjson.com/products");
+  data = await data.json();
+  return data.products;
+}
+const Page = async () => {
+  let products = await productList();
+  console.log(products);
   return (
     <div>
-      <h1>Product List (Table)</h1>
-      <table border="1" cellPadding="10">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Price ($)</th>
-          </tr>
-        </thead>
-        <tbody>
-          {product.map((item) => (
-            <tr key={item.id}>
-              <td>{item.title}</td>
-              <td>{item.price}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <h1>Product List</h1>
+      {products.map((item) => (
+        <div key={item.id}>
+          <h3>Name:{item.title}</h3>
+        </div>
+      ))}
     </div>
   );
 };
